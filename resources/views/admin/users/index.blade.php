@@ -24,14 +24,14 @@
                 <div class="Card">
                     <div>
                         <div class="numbers">{{$usersCount}}</div>
-                        <div class="CardName">Customers</div>
+                        <div class="CardName">Users</div>
                     </div>
                     <div class="iconBox"><ion-icon name="person"></ion-icon></div>
                 </div>
                 <div class="Card">
                     <div>
                         <div class="numbers">{{$usersArchivedCount}}</div>
-                        <div class="CardName">Customers Archive</div>
+                        <div class="CardName">User Archive</div>
                     </div>
                     <div class="iconBox">
                         <ion-icon name="archive"></ion-icon>
@@ -46,7 +46,7 @@
                         <ion-icon name="chatbubbles"></ion-icon>
                     </div>
                 </div>
-                <div class="Card">
+                <!-- <div class="Card">
                     <div>
                         <div class="numbers">{{$Earning}}DH</div>
                         <div class="CardName">Earning</div>
@@ -54,7 +54,7 @@
                     <div class="iconBox">
                           <ion-icon name="cash"></ion-icon>
                     </div>
-                </div>
+                </div> -->
             </div>
     {{-- users list --}}
     <div class="container">
@@ -66,13 +66,20 @@
                             <h3>
                                 <ion-icon name="list"></ion-icon>
                             </h3>
+
+                            <div class="row mb-3">
+                                <div class="col-md-12">
+                                    <!-- <a href="{{ route('user.register') }}" class="btn btn-primary">Add User</a> -->
+                                    <button type="button" class="btn btn-primary" onclick="$('#addUserModal').modal('show')">Add User</button>
+                                </div>
+                            </div>
                         </div>
                         <!--- details Lists --->
                         <div class="cat-details">
                                 <!--- category details List -->
                                 <div class="list">
                                     <div class="cartHeader">
-                                        <h2>Customers</h2>
+                                        <h2>Users</h2>
                                         {{-- Export user  --}}
                                         <a  title="Export All users"
                                         class="btn  btn-sm btn-success mr-0"
@@ -94,7 +101,7 @@
                                                     <td>Image</td>
                                                     <td>Name</td>
                                                     <td>email</td>
-                                                    <td>ville</td>
+                                                    <td>Address</td>
                                                     <td class="text-center">Action</td>
                                                 </tr>
                                             </thead>
@@ -199,6 +206,29 @@
                                     <div class="justify-content-center d-flex">
                                            {{$users->links("pagination::bootstrap-4")}}
                                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <!-- Add User Modal -->
+    <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addUserModalLabel">Add User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- User creation form goes here -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

@@ -50,10 +50,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-6" style="height:100%">
                     <div class="myRightCtn">
-                        <div class="box">
-                            <img src="{{asset('images/backgrounds/loginpackgrnn.jpg')}}" class="login-background" alt="Login-background">
+                        <div class="box" style="text-align: center">
+                            <!-- <img src="{{asset('images/backgrounds/loginpackgrnn.jpg')}}" class="login-background" alt="Login-background"> -->
+                            <img src="{{asset('images/logos/CHMSUWeb.png')}}" class="login-background" alt="Login-background">
                         </div>
                     </div>
                 </div>

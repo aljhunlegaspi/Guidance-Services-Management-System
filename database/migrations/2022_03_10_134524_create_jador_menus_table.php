@@ -18,8 +18,10 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('menu_id');
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('User')->onDelete('cascade');
-            $table->foreign('menu_id')->references('id')->on('Menu')->onDelete('cascade');
+            
+            // Corrected foreign key constraints
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('menu_id')->references('id')->on('menus')->onDelete('cascade');
         });
     }
 

@@ -26,9 +26,11 @@
         <div class="navigation">
             <ul>
                 <li>
-                    <a href="#">
-                        <span class="icon"><ion-icon name="restaurant"></ion-icon></span>
-                        <span class="title">Resto Tamri</span>
+                    <a href="#" style="display: flex; align-items: center;">
+                        <!-- <span class="icon"><ion-icon name="restaurant"></ion-icon></span> -->
+                        <span class="icon" style="display: flex; align-items: center; justify-content: center"><img style="width: 40px" src="{{asset('images/logos/CHMSUWeb.png')}}" alt="Dashboard Icon"></span>
+                        
+                        <span class="title">GSMS</span>
                     </a>
                 </li>
                 <li>
@@ -37,7 +39,7 @@
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/categories">
                         <span class="icon"><ion-icon name="apps"></ion-icon></span>
                         <span class="title">Categories</span>
@@ -54,19 +56,19 @@
                         <span class="icon"><ion-icon name="chatbubbles"></ion-icon></span>
                         <span class="title">Reviews</span>
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a href="/users">
                         <span class="icon"><ion-icon name="person"></ion-icon></span>
-                        <span class="title">Customers</span>
+                        <span class="title">Users</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/orders">
                         <span class="icon"><ion-icon name="cash"></ion-icon></span>
                         <span class="title">Orders</span>
                     </a>
-                </li>
+                </li> -->
                 <li>
                     <form action="{{route("user.logout")}}" method="post">
                     @csrf
