@@ -12,11 +12,16 @@ class HomeController extends Controller
     //
     public function index()
     {
+      
+         
+        //return view('index')->with([
+          //  'menus' => Menu::all(),
+          //  'propmenus' =>  Menu::where('POPULAR', 1)->get(),
+          //  'reviews' => Comment::all(),
+        //]);
 
-        return view('index')->with([
-            'menus' => Menu::all(),
-            'propmenus' =>  Menu::where('POPULAR', 1)->get(),
-            'reviews' => Comment::all(),
-        ]);
+        return redirect()->route('users.index');
+
+        
     }
 }

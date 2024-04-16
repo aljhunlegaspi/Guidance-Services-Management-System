@@ -3,39 +3,21 @@
 @section('content')
 <!-- Page Content -->
             <!-- Cardsfor statistics -->
-            <div class="CardBox">
+            <div class="Users-CardBox">
                 <div class="Card">
                     <div>
                         <div class="numbers">{{$usersCount}}</div>
-                        <div class="CardName">Customers</div>
+                        <div class="CardName">Users</div>
                     </div>
                     <div class="iconBox"><ion-icon name="person"></ion-icon></div>
                 </div>
                 <div class="Card">
                     <div>
-                        <div class="numbers">{{$sales}}</div>
-                        <div class="CardName">Sales</div>
+                        <div class="numbers">{{$usersArchivedCount}}</div>
+                        <div class="CardName">User Archive</div>
                     </div>
                     <div class="iconBox">
-                        <ion-icon name="basket"></ion-icon>
-                    </div>
-                </div>
-                <div class="Card">
-                    <div>
-                        <div class="numbers">{{$reviews}}</div>
-                        <div class="CardName">Reviews</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="chatbubbles"></ion-icon>
-                    </div>
-                </div>
-                <div class="Card">
-                    <div>
-                        <div class="numbers">{{$Earning}}DH</div>
-                        <div class="CardName">Earning</div>
-                    </div>
-                    <div class="iconBox">
-                          <ion-icon name="cash"></ion-icon>
+                        <ion-icon name="archive"></ion-icon>
                     </div>
                 </div>
             </div>
@@ -63,7 +45,7 @@
                             ]);
                             }
                             var options = {
-                            title: 'Total sales by Menus',
+                            title: 'Chart Data - Coming soon',
                                 is3D: true,
                                 };
 
@@ -99,8 +81,8 @@
                             width: 800,
                             legend: { position: 'none' },
                             chart: {
-                                title: 'Sales development chart',
-                                subtitle: 'The number of sales by Date' },
+                                title: 'Another chart here',
+                                subtitle: 'Chart subtitle' },
                             axes: {
                                 x: {
                                 0: { side: 'top', label: 'Orders By Date'} // Top x-axis.

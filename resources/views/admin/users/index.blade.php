@@ -20,7 +20,7 @@
 @endsection
 @section('content')
   <!-- Cards -->
-            <div class="CardBox">
+            <div class="Users-CardBox">
                 <div class="Card">
                     <div>
                         <div class="numbers">{{$usersCount}}</div>
@@ -37,7 +37,7 @@
                         <ion-icon name="archive"></ion-icon>
                     </div>
                 </div>
-                <div class="Card">
+                <!-- <div class="Card">
                     <div>
                         <div class="numbers">{{$reviews}}</div>
                         <div class="CardName">Reviews</div>
@@ -46,7 +46,7 @@
                         <ion-icon name="chatbubbles"></ion-icon>
                     </div>
                 </div>
-                <!-- <div class="Card">
+                <div class="Card">
                     <div>
                         <div class="numbers">{{$Earning}}DH</div>
                         <div class="CardName">Earning</div>
@@ -69,8 +69,8 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <!-- <a href="{{ route('user.register') }}" class="btn btn-primary">Add User</a> -->
-                                    <button type="button" class="btn btn-primary" onclick="$('#addUserModal').modal('show')">Add User</button>
+                                    <a href="{{ route('User.create') }}" class="btn btn-primary">Add User</a>
+                                    <!-- <button type="button" class="btn btn-primary" onclick="$('#addUserModal').modal('show')">Add User</button> -->
                                 </div>
                             </div>
                         </div>
@@ -224,12 +224,50 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <!-- User creation form goes here -->
+                <form action="{{ route('user.register') }}" class="myForm text-center" method="POST">
+                    @csrf
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Username" name="name" id="username" required>
+                            <div class="invalid-feedback">Please fill out field</div>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" class="form-control" name="email" placeholder="Email" id="email" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-solid fa-city"></i></span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Ville" name="ville" id="ville" required>
+                        </div>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            </div>
+                            <input type="password" class="form-control" min="9" name="password" placeholder="Password" id="password" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Create user">
+                    </div>
+                </form>
                 </div>
-                <div class="modal-footer">
+                <!-- <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div> -->
             </div>
         </div>
     </div>
@@ -237,4 +275,5 @@
 @endsection
 
 @section('script')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 @endsection

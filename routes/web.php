@@ -24,12 +24,13 @@ use App\Http\Controllers\PaypalPaymentController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('resto.index');;
+Route::get('/', [HomeController::class, 'index'])->name('gsms.index');
 
 
 
 /******************** auth routes *******************/
 // login function route
+
 Route::get('/login', [UserController::class, 'login'])->name('user.login');
 Route::post('/auth', [UserController::class, 'auth'])->name('user.auth');
 Route::post('/logout', [UserController::class, 'logout'])->name('user.logout');
@@ -82,6 +83,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     /**************8 users accounts profiles ************************/
+    Route::resource('User', UserController::class);
+
+    Route::post('/user/add-user', [UserController::class, 'addUser'])->name('user.addUser');
     // get all users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
     // search user route

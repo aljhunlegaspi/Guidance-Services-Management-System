@@ -27,6 +27,7 @@ class AdminController extends Controller
             'sales' => Order::where('paid', 1)->count(),
             'reviews' => Comment::where('status', 1)->count(),
             'Earning' => Order::sum('total'),
+            'usersArchivedCount' => User::whereNotNull('deleted_at')->withTrashed()->where('admin', 0)->count(),
             // sum total group by menu
             'SalesByMenus' => Order::select(DB::raw('sum(total) as total_quantity'), 'menu_name')
                 ->groupBy('menu_name')->get(),

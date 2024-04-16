@@ -280,7 +280,16 @@ body {
     grid-gap: 30px;
 }
 
-.CardBox .Card {
+.Users-CardBox {
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+}
+
+.CardBox .Card, .Users-CardBox .Card {
     position: relative;
     background: var(--white);
     padding: 38px;
@@ -290,30 +299,30 @@ body {
     cursor: pointer;
     box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
 }
-.CardBox .Card .numbers {
+.CardBox .Card .numbers, .Users-CardBox .Card .numbers{
     position: relative;
     font-weight: 500;
     font-size: 2.5em;
     color: var(--primaryyColor);
 }
 
-.CardBox .Card .CardName {
+.CardBox .Card .CardName, .Users-CardBox .Card .CardName{
     color: var(--green2);
     font-size: 1.1em;
     margin-top: 5px;
 }
-.CardBox .Card .iconBox {
+.CardBox .Card .iconBox, .Users-CardBox .Card .iconBox{
     font-size: 3.5em;
     color: var(--green2);
 }
 
-.CardBox .Card:hover {
+.CardBox .Card:hover, .Users-CardBox .Card:hover{
     background: var(--green3);
 }
 
-.CardBox .Card:hover .numbers,
-.CardBox .Card:hover .CardName,
-.CardBox .Card:hover .iconBox {
+.CardBox .Card:hover .numbers, .Users-CardBox .Card:hover .numbers,
+.CardBox .Card:hover .CardName, .Users-CardBox .Card:hover .CardName,
+.CardBox .Card:hover .iconBox, .Users-CardBox .Card:hover .iconBox{
     color: var(--white) !important;
 }
 /************** Change Bootstrap Style ***********/

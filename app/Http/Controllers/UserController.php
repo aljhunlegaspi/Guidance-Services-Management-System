@@ -106,6 +106,49 @@ class UserController extends Controller
         return view('auth.register');
     }
 
+    public function create()
+    {
+        //render create user page
+
+        return view('admin.users.create');
+    }
+
+    // rgister function
+    public function addUser(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|max:60|string',
+            'last_name' => 'required|max:60|string',
+            'middle_name' => 'required|max:60|string',
+            'age' => 'required|max:60|string',
+            'gender' => 'required|max:60|string',
+            'course' => 'required|max:60|string',
+            'year_level' => 'required|max:60|string',
+            'student_id' => 'required|max:60|string',
+            'email' => 'required|email',
+            'address' => 'Nullable||string',
+        ]);
+        User::create([
+            'name' => $request->first_name.' '.$request->last_name.' ,'. $request->middle_name,
+            'FullName' => $request->first_name.' '.$request->last_name.' ,'. $request->middle_name,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'course' => $request->course,
+            'year_level' => $request->year_level,
+            'student_id' => $request->student_id,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'ville' => $request->address,
+            'password' => Hash::make('password'),
+        ]);
+        return redirect()->route('users.index')->with([
+            'success' => 'User Created '
+        ]);
+    }
+
     // rgister function
     public function register(Request $request)
     {
@@ -123,7 +166,7 @@ class UserController extends Controller
             'ville' => $request->ville,
         ]);
         return redirect()->route('user.login')->with([
-            'success' => 'Compte Created '
+            'success' => 'User Created '
         ]);
     }
 
