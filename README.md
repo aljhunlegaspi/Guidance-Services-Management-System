@@ -1,15 +1,12 @@
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://main--abderrahmaneamerrhiportfoliov2.netlify.app/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/abderrahmane-amerrhi-807b40201/)
 
 # Guidance-Service-Management System
 
-A restaurant web application with laravel 8 that enables you to share menus, and customers can book orders and manage your restaurant in a simple and excellent way
 
-Discover [Vedio](https://abderrahmaneamerrhi.com/assets/vedresto_withMusic-3035c394.mp4).
+A Guidance Records Management System is a software application designed to facilitate the organization, storage, retrieval, and management of guidance-related records within an educational institution or counseling center. It typically includes features such as student profiles, academic and career guidance records, counseling session logs, appointment scheduling, progress tracking, and reporting capabilities. The system aims to streamline the process of tracking and managing student guidance activities, ensuring efficient delivery of counseling services and effective monitoring of student progress and development.
 
 ## Information
 
-I built the app using laravel , made a simple backend CRUD and use blade in front end
+This app is built with built the app using laravel
 
 ### Technologies used in Backend
 
