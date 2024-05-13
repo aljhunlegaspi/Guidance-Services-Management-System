@@ -104,32 +104,12 @@ PAYPAL_SANDBOX_API_SECRET=YourSecret
 
 #### Dashboard Features
 
--   Administrators can food menus t categories, add new categories, update a category, delete a category
+-   Administrators can manage users/Students
 
--   Administrators can also manage menus, edit, delete product view
+-   Administrators can manage Violations
 
--   Manage orders
 
--   manage visitors and users review accept them or remove them
--   manage Users Accounts
--   manage admin Account
--   Track data statistics into charts and cards
--   Export data with Excel
+#### Student/User side
 
-#### User side
+-   Students can view their penind and ongoing violations and detail on how to clear them
 
--   Visitors can view your menus and restaurant information and can send you email Create a new account Log in...
-
--   To order a new menu, add a new review, the user must be connected to their own account
--   user can order menu and pay
--   User can like the list and can go back to favorite list list
-
--   Nice scroll banner
-
--   filter menus by categories
-
--   User can edit profile image and email password name ...
-
-# Discover
-
-Discover [Vedio](https://abderrahmaneamerrhi.com/assets/vedresto_withMusic-3035c394.mp4).
