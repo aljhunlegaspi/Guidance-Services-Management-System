@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
+use App\Models\Violation;
+
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
@@ -20,6 +22,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'first_name',
+        'last_name',
+        'middle_name',
+        'gender',
+        'year_level',
+        'course',
+        'student_id',
+        'age',
         'name',
         'email',
         'image',
@@ -27,6 +37,7 @@ class User extends Authenticatable
         'FullName',
         'password',
         'deleted_at',
+        'violations',
     ];
 
     /**
@@ -60,5 +71,10 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function violations()
+    {
+        return $this->belongsToMany(Violation::class)->withTimestamps();
     }
 }

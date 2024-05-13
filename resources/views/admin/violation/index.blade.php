@@ -4,7 +4,7 @@
 @section('search')
    {{-- section   shearch   --}}
    <div class="search">
-       <form action="{{route('users.search')}}" method="POST" id="serach">
+       <form action="{{route('violation.search')}}" method="POST" id="serach">
         @csrf
              <label>
               <input type="text" placeholder="Search Here" name="search" id="search"
@@ -23,40 +23,23 @@
             <div class="Users-CardBox">
                 <div class="Card">
                     <div>
-                        <div class="numbers">{{$usersCount}}</div>
-                        <div class="CardName">Users</div>
+                        <div class="numbers">{{$violationCount}}</div>
+                        <div class="CardName">Violations</div>
                     </div>
                     <div class="iconBox"><ion-icon name="person"></ion-icon></div>
                 </div>
                 <div class="Card">
                     <div>
-                        <div class="numbers">{{$usersArchivedCount}}</div>
-                        <div class="CardName">User Archive</div>
+                        <div class="numbers">{{$userWithViolationCount}}</div>
+                        <div class="CardName">User With Violation Count</div>
                     </div>
                     <div class="iconBox">
                         <ion-icon name="archive"></ion-icon>
                     </div>
                 </div>
-                <!-- <div class="Card">
-                    <div>
-                        <div class="numbers">{{$reviews}}</div>
-                        <div class="CardName">Reviews</div>
-                    </div>
-                    <div class="iconBox">
-                        <ion-icon name="chatbubbles"></ion-icon>
-                    </div>
-                </div>
-                <div class="Card">
-                    <div>
-                        <div class="numbers">{{$Earning}}DH</div>
-                        <div class="CardName">Earning</div>
-                    </div>
-                    <div class="iconBox">
-                          <ion-icon name="cash"></ion-icon>
-                    </div>
-                </div> -->
+               
             </div>
-    {{-- users list --}}
+    {{-- Violation list --}}
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -69,7 +52,7 @@
 
                             <div class="row mb-3">
                                 <div class="col-md-12">
-                                    <a href="{{ route('User.create') }}" class="btn btn-primary">Add User</a>
+                                    <a href="{{ route('Violation.create') }}" class="btn btn-primary">Add Violation</a>
                                     <!-- <button type="button" class="btn btn-primary" onclick="$('#addUserModal').modal('show')">Add User</button> -->
                                 </div>
                             </div>
@@ -79,17 +62,17 @@
                                 <!--- category details List -->
                                 <div class="list">
                                     <div class="cartHeader">
-                                        <h2>Users</h2>
-                                        {{-- Export user  --}}
+                                        <h2>Violations</h2>
+                                        {{-- Export violation  --}}
                                         <a  title="Export All users"
                                         class="btn  btn-sm btn-success mr-0"
                                             href="{{ route('users-export') }}">
                                             <i class="fa-solid fa-download text-white"></i>
                                         </a>
-                                        @if (Route::currentRouteName() == 'users.archive')
-                                            <a href="{{route('users.index')}}" class="btn">View Users</a>
+                                        @if (Route::currentRouteName() == 'violation.archive')
+                                            <a href="{{route('violation.index')}}" class="btn">View Violations</a>
                                         @else
-                                            <a href="{{route('users.archive')}}" class="btn">View Archived Users</a>
+                                            <a href="{{route('violation.archive')}}" class="btn">View Archived Violations</a>
                                         @endif
 
                                     </div>
@@ -98,73 +81,65 @@
                                             <thead>
                                                 <tr>
                                                     <td>#ID</td>
-                                                    <td>Image</td>
                                                     <td>Name</td>
-                                                    <td>email</td>
-                                                    <td>Year level</td>
+                                                    <td>Type</td>
+                                                    <td>Description</td>
+                                                    <td>Penalty Type</td>
+                                                    <td>Submission Type</td>
                                                     <td class="text-center">Action</td>
                                                 </tr>
                                             </thead>
 
                                             <tbody>
 
-                                                @foreach ($users as $user)
-                                                @if (!$user->admin)
+                                                @foreach ($violations as $violation)
+                                                @if ($violation)
                                                     <tr>
-                                                        <td>{{$user->id}}</td>
+                                                        <td>{{$violation->id}}</td>
                                                         <td>
-                                                            @if ($user->image !== 'image')
-                                                                <img src="{{asset('images/profile/'.$user->image)}}" class="img-fluid rounded-circle"
-                                                                alt=""
-                                                                width="50"
-                                                                height="50">
-                                                            @else
-                                                            <img src="{{asset('images/profile/userImage.png')}}" class="img-fluid rounded-circle"
-                                                                alt=""
-                                                                width="50"
-                                                                height="50">
-                                                            @endif
+                                                           {{$violation->name}}
 
                                                         </td>
-                                                        <td>{{$user->name}}</td>
-                                                        <td>{{$user->email}}</td>
-                                                        <td>{{$user->year_level}}</td>
+                                                        <td>{{$violation->type}}</td>
+                                                        <td>{{$violation->description}}</td>
+                                                        <td>{{$violation->penalty_type}}</td>
+                                                        <td>{{$violation->submission_status}}</td>
 
                                                         <td class="d-flex flex-row justify-content-center align-items-center ">
                                                             {{-- Export user  --}}
-                                                            <a  title="Export user"
+                                                            <a  title="Export Violation"
                                                             class="btn  btn-sm btn-success"
-                                                                href="{{ route('Export-User',$user->id) }}">
+                                                                href="{{ route('Export-Violation',$violation->id) }}">
                                                                 <i class="fa-solid fa-download text-white"></i>
                                                             </a>
-                                                            @if ($user->deleted_at)
+                                                            @if ($violation->deleted_at)
                                                             {{-- Unarchive form --}}
-                                                            <form  id="{{$user->id}}"
-                                                                        action="{{route("user.unarchive",$user->id)}}"
+                                                            <form  id="{{$violation->id}}"
+                                                                        action="{{route("violation.unarchive",$violation->id)}}"
                                                                         method="Post"
                                                                         style="margin-left: 4px !important">
                                                                         @csrf
                                                                         @method("PUT")
                                                                     <button
-                                                                    title="Unarchive this User Account"
+                                                                    title="Unarchive Violation"
                                                                     onclick="event.preventDefault();
-                                                                    document.getElementById({{$user->id}}).submit();"
+                                                                    document.getElementById({{$violation->id}}).submit();"
                                                                     class="btn  btn-pr  btn-sm" >
                                                                         <i class="fa-solid fa-diagram-next text-white"></i>
                                                                     </button>
                                                                     </form>
                                                             @else
                                                                 {{-- Archive form --}}
-                                                            <form id="{{$user->id}}" action="{{route("users.remove",$user->id)}}" method="post" style="margin-left: 4px !important">
+                                                            <form id="{{$violation->id}}" action="{{route("violation.remove",$violation->id)}}" method="post" style="margin-left: 4px !important">
                                                             @csrf
                                                                 @method('DELETE')
                                                                 <button class="btn btn-danger btn-sm "
-                                                                title="Archive User Account"
+                                                                title="Archive Violation"
                                                                 onclick="event.preventDefault();
 
                                                                         Swal.fire({
                                                                         title: 'Are you sure?',
-                                                                        text: 'Do you want to Arhive User  {{$user->name}} Account',
+                                                                        text: 'Do you want to Arhive Violation  {{$violation->name}}',
                                                                         icon: 'warning',
                                                                         showCancelButton: true,
                                                                         confirmButtonColor: '#3085d6',
@@ -172,10 +147,10 @@
                                                                         confirmButtonText: 'Yes, Archive it!'
                                                                         }).then((result) => {
                                                                         if (result.isConfirmed) {
-                                                                            document.getElementById('{{$user->id}}').submit();
+                                                                            document.getElementById('{{$violation->id}}').submit();
                                                                             Swal.fire(
                                                                             'Deleted!',
-                                                                            'The User Account has been Archived.',
+                                                                            'The Violation has been Archived.',
                                                                             'success'
                                                                             )
                                                                         }
@@ -204,7 +179,7 @@
                             </div>
                              {{-- Pagination --}}
                                     <div class="justify-content-center d-flex">
-                                           {{$users->links("pagination::bootstrap-4")}}
+                                           {{$violations->links("pagination::bootstrap-4")}}
                                     </div>
                 </div>
             </div>

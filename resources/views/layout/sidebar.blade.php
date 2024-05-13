@@ -39,13 +39,13 @@
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a href="/categories">
+                <li>
+                    <a href="/violations">
                         <span class="icon"><ion-icon name="apps"></ion-icon></span>
-                        <span class="title">Categories</span>
+                        <span class="title">Violations</span>
                     </a>
                 </li>
-                <li>
+                <!-- <li>
                     <a href="/Menu">
                         <span class="icon"><ion-icon name="list-box"></ion-icon></span>
                         <span class="title">Menus</span>

@@ -30,6 +30,7 @@ class UserController extends Controller
                     ->orWhere('FullName', 'like', "%{$request->search}%")
                     ->orWhere('email', 'like', "%{$request->search}%")
                     ->orWhere('ville', 'like', "%{$request->search}%")
+                    ->orWhere('year_level', 'like', "%{$request->search}%")
                     ->paginate(5),
                 'usersCount' => User::where('admin', 0)->count(),
                 'usersArchivedCount' => User::whereNotNull('deleted_at')->withTrashed()->where('admin', 0)->count(),
@@ -116,6 +117,7 @@ class UserController extends Controller
     // rgister function
     public function addUser(Request $request)
     {
+        // dd($request->year_level);
         $request->validate([
             'first_name' => 'required|max:60|string',
             'last_name' => 'required|max:60|string',
@@ -126,7 +128,7 @@ class UserController extends Controller
             'year_level' => 'required|max:60|string',
             'student_id' => 'required|max:60|string',
             'email' => 'required|email',
-            'address' => 'Nullable||string',
+            'address' => 'required||string',
         ]);
         User::create([
             'name' => $request->first_name.' '.$request->last_name.' ,'. $request->middle_name,

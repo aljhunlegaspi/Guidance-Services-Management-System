@@ -49,7 +49,13 @@
                                     </div>
                                     <div class="row mb-3">
                                         <label for="year_level" class="col-md-2 col-sm-3 form-label">Year Level:</label>
-                                        <input type="text" id="year_level" name="year_level" class="col form-control" placeholder="Enter Year Level">
+                                        <!-- <input type="text" id="year_level" name="year_level" class="col form-control" placeholder="Enter Year Level"> -->
+                                        <select class="form-select col" id="year_level" name="year_level">
+                                            <option value="First Year">First Year</option>
+                                            <option value="Second Year">Second Year</option>
+                                            <option value="Third Year">Third Year</option>
+                                            <option value="Fourth Year">Fourth Year</option>
+                                        </select>
                                     </div>
                                     <div class="row mb-3">
                                         <label for="course" class="col-md-2 col-sm-3 form-label">Course:</label>

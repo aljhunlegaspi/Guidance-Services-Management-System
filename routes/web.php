@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ViolationController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommentController;
@@ -103,6 +104,25 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ArchiveUsers', [UserController::class, 'getUrchivedAcounts'])->name('users.archive');
     Route::put('Unarchive/{id}/User', [UserController::class, 'Unurchive'])->name('user.unarchive');
 
+     /**************8 Violation ************************/
+     Route::resource('Violation', ViolationController::class);
+
+     Route::post('/violation/add-violation', [ViolationController::class, 'addViolation'])->name('violation.addViolation');
+
+     // get all Violation
+     Route::get('violations', [ViolationController::class, 'index'])->name('violation.index');
+     // search user Violation
+     Route::post('/violations', [ViolationController::class, 'index'])->name('violation.search');
+
+     // remove user acount
+    Route::delete('violation/{id}', [ViolationController::class, 'removeViolation'])->name('violation.remove');
+    // get archived prdedr route
+    Route::get('ArchiveViolations', [ViolationController::class, 'getUrchivedViolations'])->name('violation.archive');
+
+
+
+
+
 
     // jador menus resources route
     Route::resource('Jador',   JadorMenuController::class);
@@ -126,4 +146,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('file-import', [UserController::class, 'fileImport'])->name('file-import');
     Route::get('file-export', [UserController::class, 'ExportAllUser'])->name('users-export');
     Route::get('file-export/user/{id}', [UserController::class, 'ExportUser'])->name('Export-User'); // export kola user bohdo
+    Route::get('file-export/violation/{id}', [ViolationController::class, 'ExportViolation'])->name('Export-Violation');
+    Route::get('file-export-violations', [ViolationController::class, 'ExportAllViolation'])->name('violation-export');
 });
