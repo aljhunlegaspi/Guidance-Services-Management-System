@@ -33,7 +33,7 @@ class ViolationController extends Controller
                     ->orWhere('submission_status', 'like', "%{$request->search}%")
                     ->paginate(5),
                 'violationCount' => Violation::count(),
-                'userWithViolationCount' => User::whereHas('violations')->count(),
+                'userWithViolationCount' => User::whereNotNull('violations')->count(),
             ]);
         } else {
             return view('admin.violation.index')->with([
