@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Violation;
 use App\Models\Comment;
 use App\Exports\UsersExport;
+
 use Illuminate\Http\Request;
 use App\Exports\ExportUsersQuery;
 use Illuminate\Support\Facades\File;
@@ -37,6 +39,7 @@ class UserController extends Controller
                 'sales' => Order::where('paid', 1)->count(),
                 'reviews' => Comment::where('status', 1)->count(),
                 'Earning' => Order::sum('total'),
+                'Violations' => Violation::all()
             ]);
         } else {
             return view('admin.users.index')->with([
@@ -46,9 +49,36 @@ class UserController extends Controller
                 'sales' => Order::where('paid', 1)->count(),
                 'reviews' => Comment::where('status', 1)->count(),
                 'Earning' => Order::sum('total'),
+                'Violations' => Violation::all()
             ]);
         }
     }
+
+    public function getUserDetails($id)
+    {
+        $user = User::findOrFail($id);
+        
+        $decoded_violations = json_decode($user->violations, true);
+        $violationsCount = $user->violations_count;
+        $violations = array();
+        foreach ($decoded_violations as $violationId) {
+            // Retrieve the violation details from the database using the ID
+            $violation = Violation::find($violationId);
+            if ($violation) {
+                // Accessing violation attributes
+                $violations[] = array(
+                    "id" => $violation->id,
+                    "name" => $violation->name,
+                    "description" => $violation->description
+                );
+                // Access more attributes as needed
+            }
+        }
+        // dd($violations);
+        return view('admin.users.details', compact('user', 'violationsCount', 'violations'));
+       
+    }
+
     public function removeAcount($id)
     {
         $user = User::findOrFail($id);
@@ -75,7 +105,21 @@ class UserController extends Controller
         return redirect()->route('users.index')->with(['success' => 'User Unarchived']);
     }
 
+    public function addViolation(Request $request, $userId)
+    {
+        $request->validate([
+            'violation' => 'required|string',
+        ]);
 
+        $user = User::findOrFail($userId);
+        $violations = json_decode($user->violations, true)  ?? [];
+        // dd($user->violations_count);
+        $violations[] = $request->violation;
+        $user->violations = $violations;
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Violation added successfully.');
+    }
 
 
     /*************** User Excel methods *******************/

@@ -77,4 +77,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Violation::class)->withTimestamps();
     }
+
+    public function getViolationsCountAttribute(){
+        return count(json_decode($this->violations, true));
+    }
 }
