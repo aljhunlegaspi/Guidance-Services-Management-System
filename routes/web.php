@@ -104,6 +104,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('ArchiveUsers', [UserController::class, 'getUrchivedAcounts'])->name('users.archive');
     Route::put('Unarchive/{id}/User', [UserController::class, 'Unurchive'])->name('user.unarchive');
 
+    Route::post('/users/{user}/add-violation', [UserController::class, 'addViolation'])->name('user.addViolation');
+    
+    Route::get('/users/{user_id}/details', [UserController::class, 'getUserDetails'])->name('users.details');
+
      /**************8 Violation ************************/
      Route::resource('Violation', ViolationController::class);
 
@@ -119,6 +123,7 @@ Route::group(['middleware' => 'auth'], function () {
     // get archived prdedr route
     Route::get('ArchiveViolations', [ViolationController::class, 'getUrchivedViolations'])->name('violation.archive');
 
+    
 
 
 
